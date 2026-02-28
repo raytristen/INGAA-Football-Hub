@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGAA Football Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Rankings Page Specific Styles */
+        .rankings-header {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 26, 77, 0.3);
+        }
+
+        .rankings-header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .poll-selector {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-left: 5px solid #ffc107;
+        }
+
+        .poll-selector label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #001a4d;
+            font-size: 15px;
+        }
+
+        .poll-selector select {
+            padding: 12px 15px;
+            border: 2px solid #001a4d;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+            min-width: 200px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .poll-selector select:hover {
+            border-color: #ffc107;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+        }
+
+        .rankings-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-top: 4px solid #ffc107;
+        }
+
+        .rankings-section h2 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #001a4d;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 12px;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 18px;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .ranking-item:hover {
+            background-color: #f0f7ff;
+            border-left: 4px solid #ffc107;
+            padding-left: 14px;
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 18px;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);
+        }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .team-name {
+            font-size: 17px;
+            font-weight: bold;
+            color: #001a4d;
+            margin-bottom: 5px;
+        }
+
+        .team-record {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .complete-rankings-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .complete-rankings-table thead {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+        }
+
+        .complete-rankings-table th {
+            padding: 16px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .complete-rankings-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            transition: background-color 0.2s ease;
+        }
+
+        .complete-rankings-table tbody tr:hover {
+            background-color: #f0f7ff;
+        }
+
+        .complete-rankings-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .rank-cell {
+            font-weight: bold;
+            color: #001a4d;
+            width: 60px;
+        }
+
+        .team-cell {
+            font-weight: 600;
+            color: #001a4d;
+        }
+
+        .record-cell {
+            text-align: center;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .conference-cell {
+            text-align: center;
+            color: #666;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .ranking-item {
+                padding: 10px;
+            }
+
+            .rank-number {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .complete-rankings-table th,
+            .complete-rankings-table td {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .rankings-header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.webp" alt="INGAA Football Hub logo">
+                <div class="logo-text">INGAA Football Hub</div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="rankings.html">Rankings</a>
+                <a href="stats.html">Stats</a>
+                <a href="news.html">News</a>
+                <a href="forms.html">Forms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Rankings Header -->
+        <div class="rankings-header" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 6px 20px rgba(0, 26, 77, 0.2);">
+            <h1 style="font-size: 32px; letter-spacing: 2px; text-transform: uppercase; color: white;">NCAA FOOTBALL RANKINGS</h1>
+        </div>
+
+        <!-- Poll Selector -->
+        <div class="poll-selector" style="background: white; border-left: 5px solid #ffc107; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);">
+            <label for="poll-select" style="color: #001a4d; font-weight: bold; font-size: 15px;">Select Poll</label>
+            <select id="poll-select" style="border: 2px solid #001a4d; border-radius: 6px; padding: 12px 15px; font-weight: 500; transition: all 0.3s ease;">
+                <option value="ap">AP Top 25</option>
+                <option value="coaches">Coaches Poll</option>
+                <option value="playoff">Playoff Committee</option>
+            </select>
+        </div>
+
+        <!-- Top 5 Rankings -->
+        <div class="rankings-section" style="border-top: 4px solid #ffc107; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);">
+            <h2 style="color: #001a4d; border-bottom: 2px solid #ffc107; font-size: 22px;">Top 5 Rankings</h2>
+            
+            <div class="ranking-item" style="padding: 18px; background-color: white; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid transparent; transition: all 0.3s ease;">
+                <div class="rank-number" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);">1</div>
+                <div class="rank-info">
+                    <div class="team-name" style="color: #001a4d; font-size: 17px;">Indiana Hoosiers</div>
+                    <div class="team-record" style="color: #000; font-weight: 500;">16-0 Big Ten</div>
+                </div>
+            </div>
+
+            <div class="ranking-item" style="padding: 18px; background-color: white; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid transparent; transition: all 0.3s ease;">
+                <div class="rank-number" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);">2</div>
+                <div class="rank-info">
+                    <div class="team-name" style="color: #001a4d; font-size: 17px;">Miami Hurricanes</div>
+                    <div class="team-record" style="color: #000; font-weight: 500;">13-3 ACC</div>
+                </div>
+            </div>
+
+            <div class="ranking-item" style="padding: 18px; background-color: white; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid transparent; transition: all 0.3s ease;">
+                <div class="rank-number" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);">3</div>
+                <div class="rank-info">
+                    <div class="team-name" style="color: #001a4d; font-size: 17px;">Ole Miss Rebels</div>
+                    <div class="team-record" style="color: #000; font-weight: 500;">13-2 SEC</div>
+                </div>
+            </div>
+
+            <div class="ranking-item" style="padding: 18px; background-color: white; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid transparent; transition: all 0.3s ease;">
+                <div class="rank-number" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);">4</div>
+                <div class="rank-info">
+                    <div class="team-name" style="color: #001a4d; font-size: 17px;">Oregon Ducks</div>
+                    <div class="team-record" style="color: #000; font-weight: 500;">13-2 Pac-12</div>
+                </div>
+            </div>
+
+            <div class="ranking-item" style="padding: 18px; background-color: white; border-radius: 6px; margin-bottom: 0; border-left: 4px solid transparent; transition: all 0.3s ease;">
+                <div class="rank-number" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); box-shadow: 0 2px 8px rgba(0, 26, 77, 0.3);">5</div>
+                <div class="rank-info">
+                    <div class="team-name" style="color: #001a4d; font-size: 17px;">Ohio State Buckeyes</div>
+                    <div class="team-record" style="color: #000; font-weight: 500;">12-2 Big Ten</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Rankings Table -->
+        <div class="rankings-section" style="border-top: 4px solid #ffc107; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);">
+            <h2 style="color: #001a4d; border-bottom: 2px solid #ffc107; font-size: 22px;">Complete Rankings</h2>
+            <table class="complete-rankings-table" style="border-radius: 8px; overflow: hidden; margin-top: 15px;">
+                <thead style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white;">
+                    <tr>
+                        <th style="padding: 16px; font-weight: bold; letter-spacing: 0.5px;">Rank</th>
+                        <th style="padding: 16px; font-weight: bold; letter-spacing: 0.5px;">Team</th>
+                        <th style="padding: 16px; font-weight: bold; letter-spacing: 0.5px;">Record</th>
+                        <th style="padding: 16px; font-weight: bold; letter-spacing: 0.5px;">Conference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#1</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Indiana Hoosiers</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">16-0</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big Ten</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#2</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Miami Hurricanes</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">13-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">ACC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#3</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Ole Miss Rebels</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">13-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">SEC</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#4</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Oregon Ducks</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">13-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Pac-12</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#5</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Ohio State Buckeyes</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big Ten</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#6</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Georgia Bulldogs</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">SEC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#7</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Texas Tech Red Raiders</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#8</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Texas A&M Aggies</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">SEC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#9</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Alabama Crimson Tide</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-4</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">SEC</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#10</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Notre Dame Fighting Irish</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">10-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Independent</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#11</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">BYU Cougars</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#12</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Texas Longhorns</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">10-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#13</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Oklahoma Sooners</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">10-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#14</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Utah Utes</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#15</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Vanderbilt Commodores</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">10-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">SEC</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#16</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Virginia Cavaliers</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">ACC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#17</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Iowa Hawkeyes</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">9-4</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big Ten</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#18</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Tulane Green Wave</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">AAC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#19</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">James Madison Dukes</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">FCS</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#20</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">USC Trojans</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">9-4</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Pac-12</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#21</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Michigan Wolverines</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">9-4</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big Ten</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#22</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Houston Cougars</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">10-3</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">AAC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#23</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">Navy Midshipmen</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">11-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">AAC</td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#24</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">North Texas Mean Green</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">12-2</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">AAC</td>
+                    </tr>
+                    <tr style="background-color: white; transition: all 0.2s ease; cursor: pointer;">
+                        <td class="rank-cell" style="color: #001a4d; font-weight: bold; padding: 14px 16px;">
+                            <span style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 4px 8px; border-radius: 50%; min-width: 30px; display: inline-block; text-align: center;">#25</span>
+                        </td>
+                        <td class="team-cell" style="color: #001a4d; font-weight: 600; padding: 14px 16px;">TCU Horned Frogs</td>
+                        <td class="record-cell" style="text-align: center; color: #000; font-weight: 600; padding: 14px 16px;">9-4</td>
+                        <td class="conference-cell" style="text-align: center; color: #666; padding: 14px 16px; font-weight: 500;">Big 12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); color: white; padding: 45px 20px; margin-top: 40px;">
+        <div class="footer-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto;">
+            <div class="footer-section">
+                <h3 style="font-size: 16px; margin-bottom: 15px; color: #ffc107; font-weight: bold;">Contact Us</h3>
+                <p style="font-size: 13px; color: #ccc; margin-bottom: 8px;">123 College Avenue</p>
+                <p style="font-size: 13px; color: #ccc; margin-bottom: 8px;">Charleston, SC 29445</p>
+                <p style="font-size: 13px; color: #ccc;">contact@ingaafootball.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3 style="font-size: 16px; margin-bottom: 15px; color: #ffc107; font-weight: bold;">Quick Links</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><a href="#about" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#contact" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Contact</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#advertise" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Advertise</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#careers" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3 style="font-size: 16px; margin-bottom: 15px; color: #ffc107; font-weight: bold;">Legal</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><a href="#privacy" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Privacy Policy</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#terms" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Terms of Use</a></li>
+                    <li style="margin-bottom: 8px;"><a href="#cookies" style="font-size: 13px; color: #ccc; text-decoration: none; transition: color 0.3s ease;">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

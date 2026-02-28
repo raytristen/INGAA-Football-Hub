@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGAA Football Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal CSS for Forms Page */
+        .forms-header {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 26, 77, 0.3);
+        }
+
+        .forms-header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .forms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .subscribe-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .subscribe-form h2 {
+            font-size: 22px;
+            color: #001a4d;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #001a4d;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px 14px;
+            font-size: 14px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            background: #f5f5f5;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        .why-subscribe {
+            background: #001a4d;
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .why-subscribe h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #ffc107;
+        }
+
+        .why-subscribe ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
+
+        .why-subscribe ul li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .community-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .community-stats div {
+            text-align: center;
+        }
+
+        .community-stats .number {
+            font-size: 24px;
+            color: #ffc107;
+        }
+
+        @media (max-width: 1024px) {
+            .forms-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.webp" alt="INGAA Football Hub logo featuring a golden trophy with handles on a pedestal, representing athletic excellence and championship success">
+                <div class="logo-text">INGAA Football Hub</div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="rankings.html">Rankings</a>
+                <a href="stats.html">Stats</a>
+                <a href="news.html">News</a>
+                <a href="forms.html">Forms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="forms-header">
+            <h1>Sports Updates</h1>
+        </div>
+
+        <div class="forms-container">
+            <!-- Form Section -->
+            <div class="subscribe-form">
+                <h2>Stay Updated</h2>
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone (Optional)</label>
+                    <input type="tel" id="phone" placeholder="(123) 456-7890">
+                </div>
+                <div class="form-group">
+                    <label for="team">Favorite Team</label>
+                    <input type="text" id="team" placeholder="Enter your team">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Tell us more..."></textarea>
+                </div>
+                <button class="submit-btn">Subscribe Now</button>
+            </div>
+
+            <!-- Why Subscribe Section -->
+            <div class="why-subscribe">
+                <h2>Why Subscribe?</h2>
+                <ul>
+                    <li>Breaking news alerts</li>
+                    <li>Expert analysis</li>
+                    <li>Exclusive Content</li>
+                    <li>Weekly roundups</li>
+                    <li>No spam, ever</li>
+                </ul>
+                <div class="our-community">
+                    <h3 style="color: #ffc107; margin-bottom: 10px;">Our Community</h3>
+                    <div class="community-stats">
+                        <div>
+                            <div class="number">50k+</div>
+                            <div>Subscribers</div>
+                        </div>
+                        <div>
+                            <div class="number">1,200+</div>
+                            <div>Articles</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 College Avenue</p>
+                <p>Charleston, SC 29445</p>
+                <p>contact@ingaafootball.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#advertise">Advertise</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

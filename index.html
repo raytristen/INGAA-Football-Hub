@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGAA Football Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal CSS for Home Page */
+        .featured-content h2 {
+            color: #001a4d;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-content p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .section-title {
+            color: #001a4d;
+            border-bottom: 3px solid #ffc107;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .headline-card h3 {
+            color: #001a4d;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .team h4 {
+            color: #001a4d;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .team p {
+            color: #ffc107;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .subscribe-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .subscribe-section p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.webp" alt="INGAA Football Hub logo featuring a golden trophy with handles on a pedestal, representing athletic excellence and championship success">
+                <div class="logo-text">INGAA Football Hub</div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="rankings.html">Rankings</a>
+                <a href="stats.html">Stats</a>
+                <a href="news.html">News</a>
+                <a href="forms.html">Forms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Featured Article -->
+        <section class="featured-section" style="background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); padding: 25px; margin-bottom: 40px;">
+            <div class="featured-image" style="border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                <img src="images/hero.webp" alt="Indiana Football Championship Race" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div class="featured-content">
+                <h2 style="color: #001a4d; font-size: 32px; margin-bottom: 15px;">Championship Race Heats Up</h2>
+                <p style="color: #555; font-size: 15px; line-height: 1.8; margin-bottom: 20px;">The college football landscape is shifting dramatically as we approach the critical stretch of the season. Top teams are battling for supremacy in what promises to be an unforgettable championship race.</p>
+                <button class="read-more-btn" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); transition: all 0.3s ease;">Read More</button>
+            </div>
+        </section>
+
+        <!-- Latest Headlines -->
+        <div class="section-title" style="color: #001a4d; border-bottom: 3px solid #ffc107; padding-bottom: 10px; display: inline-block; font-size: 20px; font-weight: bold;">Latest Headlines</div>
+        <div class="headlines">
+            <article class="headline-card" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <img src="images/headline1.webp" alt="Star Player of the Week">
+                <h3 style="color: #001a4d; font-weight: 700; text-transform: uppercase; font-size: 14px;">Star Player of the Week</h3>
+            </article>
+
+            <article class="headline-card" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <img src="images/headline2.webp" alt="Upset Alert: Underdog Wins">
+                <h3 style="color: #001a4d; font-weight: 700; text-transform: uppercase; font-size: 14px;">Upset Alert: Underdog Wins</h3>
+            </article>
+
+            <article class="headline-card" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                <img src="images/headline3.webp" alt="Coaching Changes">
+                <h3 style="color: #001a4d; font-weight: 700; text-transform: uppercase; font-size: 14px;">Coaching Changes</h3>
+            </article>
+        </div>
+
+        <!-- Trending Teams -->
+        <div class="section-title" style="color: #001a4d; border-bottom: 3px solid #ffc107; padding-bottom: 10px; display: inline-block; font-size: 20px; font-weight: bold; margin-top: 30px;">Trending Teams</div>
+        <div class="trending-section" style="background: white; padding: 30px; border-radius: 8px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); border-top: 4px solid #ffc107;">
+            <div class="teams-grid">
+                <div class="team" style="border: 2px solid #001a4d; padding: 25px; text-align: center; background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%); border-radius: 8px;">
+                    <h4 style="color: #001a4d; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Indiana Hoosiers</h4>
+                    <p style="color: #000; font-size: 22px; font-weight: bold;">16-0</p>
+                </div>
+                <div class="team" style="border: 2px solid #001a4d; padding: 25px; text-align: center; background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%); border-radius: 8px;">
+                    <h4 style="color: #001a4d; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Miami Hurricanes</h4>
+                    <p style="color: #000; font-size: 22px; font-weight: bold;">13-3</p>
+                </div>
+                <div class="team" style="border: 2px solid #001a4d; padding: 25px; text-align: center; background: linear-gradient(180deg, #f9f9f9 0%, #fff 100%); border-radius: 8px;">
+                    <h4 style="color: #001a4d; font-size: 18px; font-weight: 700; margin-bottom: 10px;">Ole Miss Rebels</h4>
+                    <p style="color: #000; font-size: 22px; font-weight: bold;">13-2</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subscribe Section -->
+        <section class="subscribe-section" style="background: linear-gradient(135deg, #001a4d 0%, #003366 100%); padding: 50px 30px; margin: 40px 0; text-align: center; border-radius: 8px; box-shadow: 0 6px 20px rgba(0, 26, 77, 0.3);">
+            <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 8px; color: white;">Why Subscribe?</h2>
+            <p style="font-size: 15px; opacity: 0.95; color: white; margin-bottom: 25px;">Get exclusive access to premium analysis</p>
+            <button class="subscribe-btn" style="background-color: #ffc107; color: #001a4d; padding: 14px 35px; border: none; border-radius: 5px; cursor: pointer; font-size: 15px; font-weight: bold; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">Subscribe</button>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 College Avenue</p>
+                <p>Charleston, SC 29445</p>
+                <p>contact@ingaafootball.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#advertise">Advertise</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

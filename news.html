@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGAA Football Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal CSS for News Page */
+        .news-header {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 26, 77, 0.3);
+        }
+
+        .news-header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .featured-article-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            display: flex;
+            gap: 25px;
+            border-top: 4px solid #ffc107;
+        }
+
+        .featured-article-image {
+            flex: 0 0 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-article-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-article-content h2 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #001a4d;
+            margin-bottom: 15px;
+        }
+
+        .featured-article-content p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .read-more-btn {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            width: fit-content;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .articles-grid-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-top: 4px solid #ffc107;
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-card-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .article-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .article-card-content {
+            padding: 20px;
+        }
+
+        .article-card-content h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #001a4d;
+            margin-bottom: 10px;
+        }
+
+        .article-card-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .news-sidebar {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-left: 5px solid #ffc107;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .sidebar-section h3 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #001a4d;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .sidebar-item:last-child {
+            border-bottom: none;
+        }
+
+        .stay-informed-section {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            padding: 30px 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 26, 77, 0.3);
+            margin-top: 25px;
+        }
+
+        .stay-informed-section h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .stay-informed-section p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .email-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .email-input-group input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .subscribe-btn {
+            background-color: #ffc107;
+            color: #001a4d;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .subscribe-btn:hover {
+            background-color: #ffb300;
+            transform: translateY(-2px);
+        }
+
+        .news-content-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .news-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-article-section {
+                flex-direction: column;
+            }
+
+            .featured-article-image {
+                flex: 0 0 auto;
+                height: 250px;
+            }
+
+            .articles-grid-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.webp" alt="INGAA Football Hub logo featuring a golden trophy with handles on a pedestal, representing athletic excellence and championship success">
+                <div class="logo-text">INGAA Football Hub</div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="rankings.html">Rankings</a>
+                <a href="stats.html">Stats</a>
+                <a href="news.html">News</a>
+                <a href="forms.html">Forms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- News Header -->
+        <div class="news-header">
+            <h1>Latest News</h1>
+        </div>
+
+        <!-- Featured Article -->
+        <div class="featured-article-section">
+            <div class="featured-article-image">
+                <img src="images/dogpile.webp" alt="Overtime Thriller">
+            </div>
+            <div class="featured-article-content">
+                <h2>Overtime Thriller</h2>
+                <p>Historic rivalry game ends in dramatic fashion as two powerhouse teams battle it out in an intense matchup that will be remembered for years to come. In an unforgettable display of determination and skill, the game goes into triple overtime with both teams refusing to back down.</p>
+                <button class="read-more-btn">Read More</button>
+            </div>
+        </div>
+
+        <!-- Main Content and Sidebar -->
+        <div class="news-content-wrapper">
+            <!-- Articles Grid -->
+            <div>
+                <h2 style="font-size: 20px; font-weight: bold; color: #001a4d; margin-bottom: 20px;">Latest Articles</h2>
+                <div class="articles-grid-section">
+                    <div class="article-card">
+                        <div class="article-card-image">
+                            <img src="images/headline2.webp" alt="Championship Review">
+                        </div>
+                        <div class="article-card-content">
+                            <h3>Championship Review</h3>
+                            <p>Breaking down the top contenders as we approach the most critical weeks of the season. Expert analysis on what each team needs to do to claim championship glory.</p>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-card-image">
+                            <img src="images/heismanwatch.webp" alt="Heisman Watch">
+                        </div>
+                        <div class="article-card-content">
+                            <h3>Heisman Watch</h3>
+                            <p>Three frontrunners emerge as the race intensifies for college football's most prestigious individual award. See who the experts think will claim the trophy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="news-sidebar">
+                <div class="sidebar-section">
+                    <h3>Breaking News</h3>
+                    <div class="sidebar-item">Coaching Change Announced</div>
+                    <div class="sidebar-item">Five Star Recruit Commits</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Latest Transfers</h3>
+                    <div class="sidebar-item">Jake Morrison: Ohio State to USC</div>
+                    <div class="sidebar-item">Marcus Johnson: Alabama to Texas</div>
+                </div>
+
+                <div class="stay-informed-section">
+                    <h3>Stay Informed</h3>
+                    <p>Get updates in your inbox.</p>
+                    <div class="email-input-group">
+                        <input type="email" placeholder="your email" style="padding: 10px; border: none; border-radius: 4px;">
+                    </div>
+                    <button class="subscribe-btn">Subscribe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 College Avenue</p>
+                <p>Charleston, SC 29445</p>
+                <p>contact@ingaafootball.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#advertise">Advertise</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

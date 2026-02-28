@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INGAA Football Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Internal CSS for Statistics Page */
+        .stats-header {
+            background: linear-gradient(135deg, #001a4d 0%, #003366 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 26, 77, 0.3);
+        }
+
+        .stats-header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .key-stats-overview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-top: 4px solid #ffc107;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #001a4d;
+            font-weight: 600;
+        }
+
+        .filters-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-left: 5px solid #ffc107;
+        }
+
+        .filters-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #001a4d;
+            margin-bottom: 20px;
+        }
+
+        .filter-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #001a4d;
+            font-size: 14px;
+        }
+
+        .filter-group select {
+            padding: 12px 15px;
+            border: 2px solid #001a4d;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: white;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-group select:hover {
+            border-color: #ffc107;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+        }
+
+        .team-statistics {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            border-top: 4px solid #ffc107;
+        }
+
+        .team-statistics h2 {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #001a4d;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 12px;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .stats-table thead {
+            background-color: #001a4d;
+            color: white;
+        }
+
+        .stats-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .stats-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .stats-table tbody tr:hover {
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+
+        .stats-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="images/logo.webp" alt="INGAA Football Hub logo featuring a golden trophy with handles on a pedestal, representing athletic excellence and championship success">
+                <div class="logo-text">INGAA Football Hub</div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="rankings.html">Rankings</a>
+                <a href="stats.html">Stats</a>
+                <a href="news.html">News</a>
+                <a href="forms.html">Forms</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Statistics Header -->
+        <div class="stats-header">
+            <h1>Statistics</h1>
+        </div>
+
+        <!-- Key Stats Overview -->
+        <div style="margin-bottom: 25px;">
+            <div style="font-size: 20px; font-weight: bold; color: #001a4d; margin-bottom: 20px;">Key Stats Overview</div>
+            <div class="key-stats-overview">
+                <div class="stat-card">
+                    <div class="stat-value">31.2</div>
+                    <div class="stat-label">Avg Points Per Game</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">1,241</div>
+                    <div class="stat-label">Total Touchdowns</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">64.8%</div>
+                    <div class="stat-label">Pass Completion</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters-section">
+            <div class="filters-title">Filters</div>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="team-filter">Team</label>
+                    <select id="team-filter">
+                        <option value="all">All Teams</option>
+                        <option value="1">Indiana Hoosiers</option>
+                        <option value="2">Miami Hurricanes</option>
+                        <option value="3">Ole Miss Rebels</option>
+                        <option value="4">Oregon Ducks</option>
+                        <option value="5">Ohio State Buckeyes</option>
+                        <option value="6">Georgia Bulldogs</option>
+                        <option value="7">Texas Tech Red Raiders</option>
+                        <option value="8">Texas A&M Aggies</option>
+                        <option value="9">Alabama Crimson Tide</option>
+                        <option value="10">Notre Dame Fighting Irish</option>
+                        <option value="11">BYU Cougars</option>
+                        <option value="12">Texas Longhorns</option>
+                        <option value="13">Oklahoma Sooners</option>
+                        <option value="14">Utah Utes</option>
+                        <option value="15">Vanderbilt Commodores</option>
+                        <option value="16">Virginia Cavaliers</option>
+                        <option value="17">Iowa Hawkeyes</option>
+                        <option value="18">Tulane Green Wave</option>
+                        <option value="19">James Madison Dukes</option>
+                        <option value="20">USC Trojans</option>
+                        <option value="21">Michigan Wolverines</option>
+                        <option value="22">Houston Cougars</option>
+                        <option value="23">Navy Midshipmen</option>
+                        <option value="24">North Texas Mean Green</option>
+                        <option value="25">TCU Horned Frogs</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="season-filter">Season</label>
+                    <select id="season-filter">
+                        <option value="2025-2026">2025-2026</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2023-2024">2023-2024</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Statistics Table -->
+        <div class="team-statistics">
+            <h2>Top 25 Team Statistics</h2>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Record</th>
+                        <th>Conference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td>Indiana Hoosiers</td>
+                        <td>16-0</td>
+                        <td>Big Ten</td>
+                    </tr>
+                    <tr>
+                        <td>#2</td>
+                        <td>Miami Hurricanes</td>
+                        <td>13-3</td>
+                        <td>ACC</td>
+                    </tr>
+                    <tr>
+                        <td>#3</td>
+                        <td>Ole Miss Rebels</td>
+                        <td>13-2</td>
+                        <td>SEC</td>
+                    </tr>
+                    <tr>
+                        <td>#4</td>
+                        <td>Oregon Ducks</td>
+                        <td>13-2</td>
+                        <td>Pac-12</td>
+                    </tr>
+                    <tr>
+                        <td>#5</td>
+                        <td>Ohio State Buckeyes</td>
+                        <td>12-2</td>
+                        <td>Big Ten</td>
+                    </tr>
+                    <tr>
+                        <td>#6</td>
+                        <td>Georgia Bulldogs</td>
+                        <td>12-2</td>
+                        <td>SEC</td>
+                    </tr>
+                    <tr>
+                        <td>#7</td>
+                        <td>Texas Tech Red Raiders</td>
+                        <td>12-2</td>
+                        <td>Big 12</td>
+                    </tr>
+                    <tr>
+                        <td>#8</td>
+                        <td>Texas A&M Aggies</td>
+                        <td>11-2</td>
+                        <td>SEC</td>
+                    </tr>
+                    <tr>
+                        <td>#9</td>
+                        <td>Alabama Crimson Tide</td>
+                        <td>11-4</td>
+                        <td>SEC</td>
+                    </tr>
+                    <tr>
+                        <td>#10</td>
+                        <td>Notre Dame Fighting Irish</td>
+                        <td>10-2</td>
+                        <td>Independent</td>
+                    </tr>
+                    <tr>
+                        <td>#11</td>
+                        <td>BYU Cougars</td>
+                        <td>12-2</td>
+                        <td>Big 12</td>
+                    </tr>
+                    <tr>
+                        <td>#12</td>
+                        <td>Texas Longhorns</td>
+                        <td>10-3</td>
+                        <td>Big 12</td>
+                    </tr>
+                    <tr>
+                        <td>#13</td>
+                        <td>Oklahoma Sooners</td>
+                        <td>10-3</td>
+                        <td>Big 12</td>
+                    </tr>
+                    <tr>
+                        <td>#14</td>
+                        <td>Utah Utes</td>
+                        <td>11-2</td>
+                        <td>Big 12</td>
+                    </tr>
+                    <tr>
+                        <td>#15</td>
+                        <td>Vanderbilt Commodores</td>
+                        <td>10-3</td>
+                        <td>SEC</td>
+                    </tr>
+                    <tr>
+                        <td>#16</td>
+                        <td>Virginia Cavaliers</td>
+                        <td>11-3</td>
+                        <td>ACC</td>
+                    </tr>
+                    <tr>
+                        <td>#17</td>
+                        <td>Iowa Hawkeyes</td>
+                        <td>9-4</td>
+                        <td>Big Ten</td>
+                    </tr>
+                    <tr>
+                        <td>#18</td>
+                        <td>Tulane Green Wave</td>
+                        <td>11-3</td>
+                        <td>AAC</td>
+                    </tr>
+                    <tr>
+                        <td>#19</td>
+                        <td>James Madison Dukes</td>
+                        <td>12-2</td>
+                        <td>FCS</td>
+                    </tr>
+                    <tr>
+                        <td>#20</td>
+                        <td>USC Trojans</td>
+                        <td>9-4</td>
+                        <td>Pac-12</td>
+                    </tr>
+                    <tr>
+                        <td>#21</td>
+                        <td>Michigan Wolverines</td>
+                        <td>9-4</td>
+                        <td>Big Ten</td>
+                    </tr>
+                    <tr>
+                        <td>#22</td>
+                        <td>Houston Cougars</td>
+                        <td>10-3</td>
+                        <td>AAC</td>
+                    </tr>
+                    <tr>
+                        <td>#23</td>
+                        <td>Navy Midshipmen</td>
+                        <td>11-2</td>
+                        <td>AAC</td>
+                    </tr>
+                    <tr>
+                        <td>#24</td>
+                        <td>North Texas Mean Green</td>
+                        <td>12-2</td>
+                        <td>AAC</td>
+                    </tr>
+                    <tr>
+                        <td>#25</td>
+                        <td>TCU Horned Frogs</td>
+                        <td>9-4</td>
+                        <td>Big 12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>123 College Avenue</p>
+                <p>Charleston, SC 29445</p>
+                <p>contact@ingaafootball.com</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#advertise">Advertise</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Use</a></li>
+                    <li><a href="#cookies">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
