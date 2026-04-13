@@ -130,6 +130,43 @@
             color: #ffc107;
         }
 
+        .form-section {
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f4f4f4;
+            border-radius: 10px;
+        }
+
+        .form-section input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section button {
+            width: 100%;
+            padding: 12px;
+            background: #990000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-section button:hover {
+            background: #cc0000;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         @media (max-width: 1024px) {
             .forms-container {
                 grid-template-columns: 1fr;
@@ -213,6 +250,25 @@
                 </div>
             </div>
         </div>
+
+        <section class="form-section">
+            <h2>Join the INGAA Football Hub Mailing List</h2>
+
+            <form id="fanForm">
+                <label for="fanName">Full Name</label>
+                <input type="text" id="fanName" name="fanName" placeholder="Enter your name">
+
+                <label for="fanEmail">Email Address</label>
+                <input type="text" id="fanEmail" name="fanEmail" placeholder="Enter your email">
+
+                <label for="favoriteTeam">Favorite Team</label>
+                <input type="text" id="favoriteTeam" name="favoriteTeam" placeholder="e.g., Florida State">
+
+                <button type="submit">Subscribe</button>
+            </form>
+
+            <p id="formError" class="error"></p>
+        </section>
     </div>
 
     <!-- Footer -->
@@ -245,5 +301,6 @@
             </div>
         </div>
     </footer>
+    <script src="fan-validation.js"></script>
 </body>
 </html>
